@@ -1,0 +1,26 @@
+{
+    "name": "persec/shopee-pay",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Persec\\ShopeePay\\": "src/"
+        },
+        "classmap": [
+            "src/",
+            "src/exceptions/"
+        ]
+    },
+    "authors": [
+        {
+            "name": "wattana",
+            "email": "wattana.php@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "require": {
+        "ext-curl": "*",
+        "ext-json": "*"
+    }
+}
