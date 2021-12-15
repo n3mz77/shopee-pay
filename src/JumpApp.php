@@ -2,6 +2,8 @@
 
 namespace Persec\ShopeePay;
 
+use Persec\ShopeePay\Exceptions\RuntimeException;
+
 class JumpApp extends ShopeePay
 {
 
@@ -23,7 +25,12 @@ class JumpApp extends ShopeePay
         $strParams = json_encode($params);
         $signature = $this->generateSignature($strParams);
         $headers = $this->getHeaders($this->clientId, $signature);
-        $res =  $this->request($endpoint, $strParams, $headers);
-        return new JumpAppResponse(json_decode($res, true));
+        $strResponse =  $this->request($endpoint, $strParams, $headers);
+        $decoded = json_decode($strResponse, true);
+        if (!empty($decoded['errcode'])) {
+            $msg = $decoded['debug_msg'] ?? $decoded['errcode'];
+            throw new RuntimeException("response got error message $msg");
+        }
+        return new JumpAppResponse($decoded);
     }
 }

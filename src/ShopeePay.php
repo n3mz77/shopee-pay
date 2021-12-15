@@ -56,6 +56,30 @@ class ShopeePay
     }
 
     /**
+     * @param $signature
+     * @param $data
+     * @throws RuntimeException
+     */
+    public function verifySignature($signature, $data)
+    {
+        $verifySignature = $this->generateSignature($data);
+        if ($verifySignature !== $signature) {
+            throw new RuntimeException('Signature not matched. signature '. $signature);
+        }
+    }
+
+    /**
+     * @param $clientId
+     * @throws RuntimeException
+     */
+    public function verifyClientId($clientId)
+    {
+        if ($this->clientId !== $clientId) {
+            throw new RuntimeException('Client id is not matched');
+        }
+    }
+
+    /**
      * @param $endpoint
      * @param $params
      * @param array $headers
