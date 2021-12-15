@@ -34,7 +34,7 @@ class ShopeePay
 
     public function getHeaderClientIdName(): string
     {
-        return 'X-Airpay-ClientId';
+        return 'X-Airpay-Clientid';
     }
 
     public function getHeaderSignature(): string
