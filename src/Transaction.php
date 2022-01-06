@@ -32,4 +32,9 @@ class Transaction
         $this->terminal_id = $data['terminal_id'] ?? null;
         $this->promo_id_applied = $data['promo_id_applied'] ?? null;
     }
+
+    public function isTransactionSuccess(): bool
+    {
+        return intval($this->status) === Status::SUCCESSFUL;
+    }
 }
